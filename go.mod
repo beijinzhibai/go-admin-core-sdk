@@ -1,4 +1,4 @@
-module go-admin-core/sdk
+module sdk
 
 go 1.18
 
