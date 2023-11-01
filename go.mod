@@ -1,4 +1,4 @@
-module sdk
+module github.com/beijinzhibai/go-admin-core-sdk
 
 go 1.18
 
