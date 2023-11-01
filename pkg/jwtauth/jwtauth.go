@@ -543,7 +543,7 @@ func (mw *GinJWTMiddleware) RefreshToken(c *gin.Context) (string, time.Time, err
 	newClaims["orig_iat"] = mw.TimeFunc().Unix()
 	tokenString, err := mw.signedString(newToken)
 	// 从pem文件读取私钥
-	privKey, err := x509.ReadPrivateKeyFromPemFile("/sm2_pri_key.pem", nil)
+	privKey, err := x509.ReadPrivateKeyFromPemFile("sm2_pri_key.pem", nil)
 
 	tokenString, err = zctoken.BuildTokenWithGM(claims, time.Time{}, privKey.(*sm2.PrivateKey))
 	if err != nil {
@@ -702,7 +702,7 @@ func (mw *GinJWTMiddleware) ParseToken(c *gin.Context) (*jwt.Token, error) {
 	//}的结构体
 
 	// 从pem文件读取公钥
-	pubKey, err := x509.ReadPublicKeyFromPemFile("/sm2_pub_key.pem")
+	pubKey, err := x509.ReadPublicKeyFromPemFile("sm2_pub_key.pem")
 
 	payloadsAfterCheck, err := zctoken.CheckTokenWithGM(token, pubKey.(*sm2.PublicKey))
 
