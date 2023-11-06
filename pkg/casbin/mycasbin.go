@@ -91,13 +91,9 @@ func Setup(db *gorm.DB, _ string) *casbin.SyncedEnforcer {
 				
 
 				err = w.SetUpdateCallback(updateCallback)
-				if err != nil {
-					panic(err)
-				}
+				
 				err = enforcer.SetWatcher(w)
-				if err != nil {
-					panic(err)
-				}
+				
 			}
 		}
 
