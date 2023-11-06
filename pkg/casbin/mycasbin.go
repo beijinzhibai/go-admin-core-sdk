@@ -80,7 +80,7 @@ func Setup(db *gorm.DB, _ string) *casbin.SyncedEnforcer {
 				}
 			} else if len(config.CacheConfig.Redis.Addrs) > 0 && config.CacheConfig.Redis.Addrs[0] != "" {
 				// Redis Cluster 模式
-				w, err := redisWatcher.NewWatcher(config.CacheConfig.Redis.Addr, redisWatcher.WatcherOptions{
+				w, _ := redisWatcher.NewWatcher(config.CacheConfig.Redis.Addr, redisWatcher.WatcherOptions{
 					ClusterOptions: redis.ClusterOptions{
 						Addrs:    config.CacheConfig.Redis.Addrs,
 						Password: config.CacheConfig.Redis.Password,
