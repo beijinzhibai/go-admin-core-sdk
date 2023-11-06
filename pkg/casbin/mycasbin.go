@@ -78,23 +78,32 @@ func Setup(db *gorm.DB, _ string) *casbin.SyncedEnforcer {
 				if err != nil {
 					panic(err)
 				}
-			} else if len(config.CacheConfig.Redis.Addrs) > 0 && config.CacheConfig.Redis.Addrs[0] != "" {
-				// Redis Cluster 模式
-				w, _ := redisWatcher.NewWatcher(config.CacheConfig.Redis.Addr, redisWatcher.WatcherOptions{
-					ClusterOptions: redis.ClusterOptions{
-						Addrs:    config.CacheConfig.Redis.Addrs,
-						Password: config.CacheConfig.Redis.Password,
-					},
-					Channel:    "/casbin",
-					IgnoreSelf: false,
-				})
-				
-
-				err = w.SetUpdateCallback(updateCallback)
-				
-				err = enforcer.SetWatcher(w)
-				
 			}
+			//else if len(config.CacheConfig.Redis.Addrs) > 0 && config.CacheConfig.Redis.Addrs[0] != "" {
+			//	// Redis Cluster 模式
+			//	w, _ := redisWatcher.NewWatcher(config.CacheConfig.Redis.Addr, redisWatcher.WatcherOptions{
+			//		ClusterOptions: redis.ClusterOptions{
+			//			Addrs:    config.CacheConfig.Redis.Addrs,
+			//			Password: config.CacheConfig.Redis.Password,
+			//		},
+			//		Channel:    "/casbin",
+			//		IgnoreSelf: false,
+			//	})
+			//
+			//	if err != nil {
+			//		panic(err)
+			//	}
+			//
+			//	err = w.SetUpdateCallback(updateCallback)
+			//	if err != nil {
+			//		panic(err)
+			//	}
+			//	err = enforcer.SetWatcher(w)
+			//	if err != nil {
+			//		panic(err)
+			//	}
+			//
+			//}
 		}
 
 		log.SetLogger(&Logger{})
