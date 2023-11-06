@@ -88,9 +88,7 @@ func Setup(db *gorm.DB, _ string) *casbin.SyncedEnforcer {
 					Channel:    "/casbin",
 					IgnoreSelf: false,
 				})
-				if err != nil {
-					panic(err)
-				}
+				
 
 				err = w.SetUpdateCallback(updateCallback)
 				if err != nil {
